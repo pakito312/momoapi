@@ -7,6 +7,7 @@
     Avant de commencer à utiliser cette Class, nous supposons que vous avez une bonne connaissance en php. Et avoir installé tous les logiciels requis pour permettre d'exécuter les exemples fournis ici.
     Vous devez également avoir un compte sur le portail des développeurs Momo
  [https://momodeveloper.mtn.com/](https://momodeveloper.mtn.com/ "Visit page")
+ 
     Deplus vous devez avoir  crééer
     - **ApiUser** 
     - **ApiKey** 
