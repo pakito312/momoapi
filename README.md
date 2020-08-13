@@ -55,3 +55,15 @@
     <?php 
             // Reference-Id
              $momo->colStatus("1c2d671d-d00d-43a9-92ea-25ea8aab9cb1");
+
+***disbursements.php***
+
+    <?php 
+            // montant  237+numero	uniquecode
+             $momo->disTransfer("montant","23767xxxxxx","uniquecode");
+
+***disbursements_status.php***
+
+    <?php 
+            // Reference-Id
+             $momo->disTransferStatus("1c2d671d-d00d-43a9-92ea-25ea8aab9cb1");
