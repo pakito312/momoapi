@@ -9,7 +9,8 @@
     Vous devez également avoir un compte sur le portail des développeurs Momo 
 [https://momodeveloper.mtn.com/](https://momodeveloper.mtn.com/ "Visit page")
 
-    Deplus vous devez avoir  crééer
+    Deplus vous devez avoir  créer
+
     - **ApiUser** 
     - **ApiKey** 
 [https://momo.mtncameroon.net/partner/](https://momo.mtncameroon.net/partner/ "Visit page")
