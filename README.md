@@ -35,7 +35,7 @@
         $this->disPayerMessage = "payerMessage";
         $this->disPayeeNote =  "payeeNote";
 
-    Ensuite inclure le fichier momoapi.php dans votre projet
+Ensuite inclure le fichier momoapi.php dans votre projet
 
     <?php 
          require_once 'momoapi.php';
