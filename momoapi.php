@@ -1,7 +1,7 @@
 <?php
   class MOMOAPI{
-    // anything that starts with dis deals with disbursement
-    // anything that also starts with col deals with collection
+    // anything that starts with 'dis' deals with disbursement
+    // anything that also starts with 'col' deals with collection
     // for security reasons i had remove the keys ):
     // and primary key or secondary key can be used where ever you see Ocp-Apim-Subscription-Key
     // this is for both collection and disbursement
@@ -51,28 +51,28 @@
      // encode the the apiuser and apiuserkey generated to base 64
      // the encoded base 64 is sent using the Bearer token
      $base64 = base64_encode($this->_disApiUser .":". $this->_disApiKey);
-	 //var_dump($base64);
-     $data = '{
 
-     }';
+     $data = '{}';
+
      $curl = curl_init();
+
      curl_setopt($curl, CURLOPT_URL, "https://ericssonbasicapi1.azure-api.net/disbursement/token/");
+
      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
        'Ocp-Apim-Subscription-Key: '.$this->_disSecdKey,
        'Authorization: Basic '.$base64
      ));
-       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-       curl_setopt($curl, CURLOPT_POST, TRUE);
-       curl_setopt($curl, CURLOPT_HEADER, false);
-       curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-	   curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POST, TRUE);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
-       $result = json_decode(curl_exec($curl));
-       curl_close($curl);
-		
-       return $result->access_token;
-       // var_dump($result);
+    $result = json_decode(curl_exec($curl));
+    curl_close($curl);
+
+    return $result->access_token;
    }
 
    public function disTransfer($amount, $number, $externalID){
@@ -89,9 +89,11 @@
        "payerMessage": "'.$this->disPayerMessage.'",
        "payeeNote": "'.$this->disPayeeNote.'"
      }';
-     //print_r($data);
+
 	 $uuid = $this->gen_uuid();
+
      $curl = curl_init();
+
      curl_setopt($curl, CURLOPT_URL, "https://ericssonbasicapi1.azure-api.net/disbursement/v1_0/transfer");
      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
        'Content-Type: application/json',
@@ -101,39 +103,39 @@
        'Authorization: Bearer '.$this->disToken(),
        'X-Reference-Id: '.$uuid
      ));
-       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-       curl_setopt($curl, CURLOPT_POST, TRUE);
-       curl_setopt($curl, CURLOPT_HEADER, true);
-       curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-	   curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POST, TRUE);
+    curl_setopt($curl, CURLOPT_HEADER, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
-       $result = curl_exec($curl);
-       $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-	  
-	   //var_dump($code);
-	   if ($code == 202) { 
-			$response =array(
-				"status"=>"1",
-				"message"=>"operation reception successful, check the status now",
-				"transaction_id"=>$externalID,
-				"uuid"=>$uuid
-			);
-		}
-		else{
-			$response =array(
-					"status"=>"2",
-					"message"=>curl_error($curl),
-					"transaction_id"=>$externalID,
-					"code"=>$code,
-					"uuid"=>$uuid,
-					"data"=>$result
-				);
-		}
-	   
-		curl_close($curl);
-		return json_encode($response);
-	   
+    $result = curl_exec($curl);
+    $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    //var_dump($code);
+    if ($code == 202) {
+        $response =array(
+            "status"=>"1",
+            "message"=>"operation reception successful, check the status now",
+            "transaction_id"=>$externalID,
+            "uuid"=>$uuid
+            );
+        }
+    else{
+        $response =array(
+            "status"=>"2",
+            "message"=>curl_error($curl),
+            "transaction_id"=>$externalID,
+            "code"=>$code,
+            "uuid"=>$uuid,
+            "data"=>$result
+        );
+    }
+
+    curl_close($curl);
+
+    return json_encode($response);
    }
 
    public function disTransferStatus($disXRefId){
