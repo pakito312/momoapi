@@ -5,7 +5,8 @@ Il s'agit d'une Class php qui a été conçue pour aider les développeurs à in
 ## Prerequisites ##
 
 Avant de commencer à utiliser cette Class, nous supposons que vous avez une bonne connaissance en php.Et avoir installé tous les logiciels requis pour permettre d'exécuter les exemples fournis ici.
-Vous devez également avoir un compte sur le portail des développeurs Momo [https://momodeveloper.mtn.com/](https://momodeveloper.mtn.com/ "Visit page")
+Vous devez également avoir un compte sur le portail des développeurs Momo sandbox [https://momodeveloper.mtn.com/](https://momodeveloper.mtn.com/ "Visit page")
+product https://momoapi.mtn.com/
 
 Deplus vous devez avoir  créer
 
